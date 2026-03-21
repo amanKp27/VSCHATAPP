@@ -10,8 +10,8 @@ import cors from "cors";
 const app = express();
 const __dirname = path.resolve();
 
-app.use(express.json());
 app.use(cors({origin:ENV.CLIENT_URL,credentials:true}));
+app.use(express.json({ limit: '10mb' }));
 app.use(cookieParser());
 
 app.use('/api/auth',authRoutes);
