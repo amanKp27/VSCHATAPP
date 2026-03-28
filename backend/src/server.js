@@ -6,8 +6,8 @@ import messageRoutes from "./routes/message.route.js";
 import {connectDB} from "./lib/db.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import {app,server} from "./lib/socket.js";
 
-const app = express();
 const __dirname = path.resolve();
 
 app.use(cors({origin:ENV.CLIENT_URL,credentials:true}));
@@ -25,7 +25,7 @@ if(ENV.NODE_ENV === "production"){
     })
 }
 
-app.listen(ENV.PORT,()=> {
+server.listen(ENV.PORT,()=> {
     console.log(`Port running on ${ENV.PORT}!`);
     connectDB();
 });
